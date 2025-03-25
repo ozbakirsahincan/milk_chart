@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ChartItem from "./ChartItem";
-import NewInput from "./NewInput";
 
 const fetchChart = async () => {
     try {
@@ -14,47 +13,45 @@ const fetchChart = async () => {
 }
 
 const Chart = () => {
-  const [chartData, setChartData] = useState([]);
+    const [chartData, setChartData] = useState([]);
 
-  const fetchData = async () => {
-    const data = await fetchChart();
-    setChartData(data);
-  };
+    const fetchData = async () => {
+        const data = await fetchChart();
+        setChartData(data);
+    };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+    useEffect(() => {
+        fetchData();
+    }, []);
 
-  return (
-    <div className="container mt-4">
-      <NewInput />
-      
-      <table className="table table-bordered table-striped table-hover">
-        <thead>
-          <tr>
-            <th scope="col">Sıra No</th>
-            <th scope="col">Tarih</th>
-            <th scope="col">Bitiş Tarihi</th>
-            <th scope="col">Çiş</th>
-            <th scope="col">Kaka</th>
-            <th scope="col">Yapılan Mama</th>
-            <th scope="col">İçilen Mama</th>
-            <th scope="col">Kalan Mama</th>
-            <th scope="col">Kullanıcı</th>
-            <th>İşlem</th>
-          </tr>
-        </thead>
-        <tbody>
-          {chartData.map((item) => (
-            <ChartItem 
-              key={item._id}
-              {...item}
-            />
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
+    return (
+        <div className="container mt-4">
+            <table className="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Sıra No</th>
+                        <th scope="col">Tarih</th>
+                        <th scope="col">Bitiş Tarihi</th>
+                        <th scope="col">Çiş</th>
+                        <th scope="col">Kaka</th>
+                        <th scope="col">Yapılan Mama</th>
+                        <th scope="col">İçilen Mama</th>
+                        <th scope="col">Kalan Mama</th>
+                        <th scope="col">Kullanıcı</th>
+                        <th>İşlem</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {chartData.map((item) => (
+                        <ChartItem
+                            key={item._id}
+                            {...item}
+                        />
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    );
 };
 
 export default Chart;
