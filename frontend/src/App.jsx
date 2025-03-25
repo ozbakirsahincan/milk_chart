@@ -1,16 +1,19 @@
-import { useState } from "react";
-
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Chart from "./components/Chart";
+import Create from "./components/Create";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <div>
-      <Navbar />
-      <Chart />
-    </div>
+    <Router>
+      <div>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Chart />} />
+          <Route path="/create" element={<Create />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

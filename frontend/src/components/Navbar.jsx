@@ -1,5 +1,12 @@
 import React from "react";
 
+
+const handleChangeInput = (event) => {
+  console.log(event.target.value);
+  
+}
+
+
 const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -39,6 +46,7 @@ const Navbar = () => {
               type="search"
               placeholder="Giriş Ara"
               aria-label="Search"
+              onChange={(e) => handleChangeInput(e)} 
             />
             <button className="btn btn-outline-success" type="submit">
               Ara

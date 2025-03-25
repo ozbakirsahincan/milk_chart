@@ -1,9 +1,9 @@
 import React from 'react'
 
-const ChartItem = ({id, date, end_date, pee, poop, total_milk, drinking_milk, remaining_milk, breastfeeding, user}) => {
+const ChartItem = ({_id, date, end_date, pee, poop, total_milk, drinking_milk, remaining_milk, breastfeeding, user}) => {
   return (
     <tr>
-      <th scope="row">{id}</th>
+      <th scope="row">{_id}</th>
       <td>{date}</td>
       <td>{end_date}</td>
       <td>{pee}</td>
