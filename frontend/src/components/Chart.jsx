@@ -37,7 +37,6 @@ const Chart = () => {
             <th scope="col">Bitiş Tarihi</th>
             <th scope="col">Çiş</th>
             <th scope="col">Kaka</th>
-            <th scope="col">Emzirme</th>
             <th scope="col">Yapılan Mama</th>
             <th scope="col">İçilen Mama</th>
             <th scope="col">Kalan Mama</th>

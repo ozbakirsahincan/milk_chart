@@ -10,6 +10,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Chart />} />
+          <Route path="/chart" element={<Chart />} />
           <Route path="/create" element={<Create />} />
         </Routes>
       </div>

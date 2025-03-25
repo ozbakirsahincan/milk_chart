@@ -1,19 +1,13 @@
 import React from "react";
-
-
-const handleChangeInput = (event) => {
-  console.log(event.target.value);
-  
-}
-
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
+        <Link className="navbar-brand" to="/">
           Mavi Duru Input Chart
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -28,30 +22,17 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">
+              <Link className="nav-link active" to="/">
                 Ana Sayfa
-              </a>
+              </Link>
             </li>
-            
-            
             <li className="nav-item">
-              <a className="nav-link" aria-disabled="true">
+              <Link className="nav-link" to="/chart">
                 Tüm Girişler
-              </a>
+              </Link>
             </li>
           </ul>
-          <form className="d-flex" role="search">
-            <input
-              className="form-control me-2"
-              type="search"
-              placeholder="Giriş Ara"
-              aria-label="Search"
-              onChange={(e) => handleChangeInput(e)} 
-            />
-            <button className="btn btn-outline-success" type="submit">
-              Ara
-            </button>
-          </form>
+          
         </div>
       </div>
     </nav>

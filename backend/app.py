@@ -1,14 +1,15 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from bson import ObjectId
-from mongo_config import collection, counter_collection, test_connection
+from mongo_config import collection, counter_collection, test_connection, reset_collections
 from datetime import datetime
 
 app = Flask(__name__)
 CORS(app)
 
-# MongoDB bağlantısını test et
+# MongoDB bağlantısını test et ve koleksiyonları sıfırla
 test_connection()
+reset_collections()  # Koleksiyonları sıfırlayarak yeni yapıya geçiş yapıyoruz
 
 @app.route("/")
 def hello():

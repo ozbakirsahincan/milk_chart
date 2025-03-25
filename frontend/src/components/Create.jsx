@@ -9,7 +9,6 @@ const Create = () => {
     end_date: '',
     pee: 'yok',
     poop: 'yok',
-    breastfeeding: 'yok',
     total_milk: '',
     drinking_milk: '',
     remaining_milk: '',
@@ -78,12 +77,13 @@ const Create = () => {
               name="end_date"
               value={formData.end_date}
               onChange={handleChange}
+              required
             />
           </div>
         </div>
 
         <div className="row mb-3">
-          <div className="col-md-4">
+          <div className="col-md-6">
             <label className="form-label">Çiş</label>
             <select
               className="form-select"
@@ -95,24 +95,12 @@ const Create = () => {
               <option value="var">Var</option>
             </select>
           </div>
-          <div className="col-md-4">
+          <div className="col-md-6">
             <label className="form-label">Kaka</label>
             <select
               className="form-select"
               name="poop"
               value={formData.poop}
-              onChange={handleChange}
-            >
-              <option value="yok">Yok</option>
-              <option value="var">Var</option>
-            </select>
-          </div>
-          <div className="col-md-4">
-            <label className="form-label">Emzirme</label>
-            <select
-              className="form-select"
-              name="breastfeeding"
-              value={formData.breastfeeding}
               onChange={handleChange}
             >
               <option value="yok">Yok</option>
