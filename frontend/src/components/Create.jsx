@@ -11,6 +11,7 @@ const Create = () => {
     made_milk: "",
     drank_milk: "",
     remaining_milk: "",
+    description:""
   });
 
   const handleChange = (e) => {

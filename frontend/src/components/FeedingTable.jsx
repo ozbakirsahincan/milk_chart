@@ -18,6 +18,7 @@ const FeedingTable = () => {
             <th className="px-4 py-2">Yapılan Mama (ml)</th>
             <th className="px-4 py-2">İçilen Mama (ml)</th>
             <th className="px-4 py-2">Kalan Mama (ml)</th>
+            <th className="px-4 py-2">Description </th>
           </tr>
         </thead>
         <tbody>
@@ -29,6 +30,7 @@ const FeedingTable = () => {
               <td className="px-4 py-2">{entry.madeMilk}</td>
               <td className="px-4 py-2">{entry.drankMilk}</td>
               <td className="px-4 py-2">{entry.remainingMilk}</td>
+              <td className="px-4 py-2">{entry.description} </td>
             </tr>
           ))}
         </tbody>
