@@ -1,0 +1,17 @@
+server:
+  port: 8000
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/feedinglog_db?useSSL=false&serverTimezone=UTC
+    username: root
+    password: 131415Sah1ncann..
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update   # Tablo varsa dokunmaz, yoksa oluşturur
+    show-sql: true       # Konsolda SQL komutlarını gösterir
+    properties:
+      hibernate:
+        format-sql: true

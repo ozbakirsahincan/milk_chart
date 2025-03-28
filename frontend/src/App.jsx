@@ -1,16 +1,16 @@
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Chart from "./components/Chart";
+import FeedingTable from "./components/FeedingTable";
 import Create from "./components/Create";
 
 function App() {
   return (
     <Router>
-      <div>
-        <Navbar />
+      <Navbar />
+      <div className="p-4">
         <Routes>
-          <Route path="/" element={<Chart />} />
-          <Route path="/chart" element={<Chart />} />
+          <Route path="/" element={<FeedingTable />} />
           <Route path="/create" element={<Create />} />
         </Routes>
       </div>

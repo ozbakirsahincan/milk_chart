@@ -3,37 +3,11 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
-      <div className="container-fluid">
-        <Link className="navbar-brand" to="/">
-          Mavi Duru Input Chart
-        </Link>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <Link className="nav-link active" to="/">
-                Ana Sayfa
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/chart">
-                Tüm Girişler
-              </Link>
-            </li>
-          </ul>
-          
-        </div>
+    <nav className="bg-gray-800 text-white px-6 py-4 flex justify-between items-center shadow">
+      <h1 className="text-xl font-semibold">Feeding Tracker</h1>
+      <div className="space-x-4">
+        <Link to="/" className="hover:underline">Ana Sayfa</Link>
+        <Link to="/create" className="hover:underline">Yeni Giriş</Link>
       </div>
     </nav>
   );

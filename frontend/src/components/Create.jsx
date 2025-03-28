@@ -1,169 +1,97 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Create = () => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    date: '',
-    end_date: '',
-    pee: 'yok',
-    poop: 'yok',
-    total_milk: '',
-    drinking_milk: '',
-    remaining_milk: '',
-    user: ''
+  const [form, setForm] = useState({
+    datetime: "",
+    pee: false,
+    poop: false,
+    made_milk: "",
+    drank_milk: "",
+    remaining_milk: "",
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
+    const { name, value, type, checked } = e.target;
+    setForm((prev) => ({
       ...prev,
-      [name]: value
+      [name]: type === "checkbox" ? checked : value,
     }));
-
-    // Otomatik kalan mama hesaplama
-    if (name === 'total_milk' || name === 'drinking_milk') {
-      const total = name === 'total_milk' ? Number(value) : Number(formData.total_milk);
-      const drinking = name === 'drinking_milk' ? Number(value) : Number(formData.drinking_milk);
-      
-      if (total && drinking) {
-        setFormData(prev => ({
-          ...prev,
-          remaining_milk: total - drinking
-        }));
-      }
-    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/chart', formData);
-      console.log('Sunucu yanıtı:', response);  // Yanıtı konsola yazdır
-      
-      if (response.status === 201) {
-        console.log('Kayıt başarılı, ana sayfaya yönlendiriliyor...');
-        navigate('/');
-      }
-    } catch (error) {
-      console.error('Veri eklenirken hata oluştu:', error.response || error);
-      // Kullanıcıya hata mesajını göster
-      alert('Veri eklenirken bir hata oluştu. Lütfen tekrar deneyin.');
+      await axios.post("http://127.0.0.1:8000/api/feeding-logs/", form);
+      navigate("/"); // Başarılıysa listeye dön
+    } catch (err) {
+      console.error("Kayıt eklenemedi:", err);
     }
   };
 
   return (
-    <div className="container mt-4">
-      <h2 className="mb-4">Yeni Kayıt Ekle</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="row mb-3">
-          <div className="col-md-6">
-            <label className="form-label">Başlangıç Saati</label>
-            <input
-              type="time"
-              className="form-control"
-              name="date"
-              value={formData.date}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="col-md-6">
-            <label className="form-label">Bitiş Saati</label>
-            <input
-              type="time"
-              className="form-control"
-              name="end_date"
-              value={formData.end_date}
-              onChange={handleChange}
-              required
-            />
-          </div>
-        </div>
-
-        <div className="row mb-3">
-          <div className="col-md-6">
-            <label className="form-label">Çiş</label>
-            <select
-              className="form-select"
-              name="pee"
-              value={formData.pee}
-              onChange={handleChange}
-            >
-              <option value="yok">Yok</option>
-              <option value="var">Var</option>
-            </select>
-          </div>
-          <div className="col-md-6">
-            <label className="form-label">Kaka</label>
-            <select
-              className="form-select"
-              name="poop"
-              value={formData.poop}
-              onChange={handleChange}
-            >
-              <option value="yok">Yok</option>
-              <option value="var">Var</option>
-            </select>
-          </div>
-        </div>
-
-        <div className="row mb-3">
-          <div className="col-md-4">
-            <label className="form-label">Yapılan Mama (ml)</label>
-            <input
-              type="number"
-              className="form-control"
-              name="total_milk"
-              value={formData.total_milk}
-              onChange={handleChange}
-              min="0"
-            />
-          </div>
-          <div className="col-md-4">
-            <label className="form-label">İçilen Mama (ml)</label>
-            <input
-              type="number"
-              className="form-control"
-              name="drinking_milk"
-              value={formData.drinking_milk}
-              onChange={handleChange}
-              min="0"
-            />
-          </div>
-          <div className="col-md-4">
-            <label className="form-label">Kalan Mama (ml)</label>
-            <input
-              type="number"
-              className="form-control"
-              name="remaining_milk"
-              value={formData.remaining_milk}
-              disabled
-            />
-          </div>
-        </div>
-
-        <div className="mb-3">
-          <label className="form-label">Kullanıcı</label>
+    <div className="max-w-xl mx-auto p-4 bg-white rounded-xl shadow">
+      <h2 className="text-xl font-semibold mb-4">Yeni Beslenme Kaydı</h2>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label className="block mb-1">Tarih / Saat</label>
           <input
-            type="text"
-            className="form-control"
-            name="user"
-            value={formData.user}
+            type="datetime-local"
+            name="datetime"
+            value={form.datetime}
             onChange={handleChange}
+            className="w-full border px-3 py-2 rounded"
             required
           />
         </div>
-
-        <div className="d-flex gap-2">
-          <button type="button" className="btn btn-secondary" onClick={() => navigate('/')}>
-            İptal
-          </button>
-          <button type="submit" className="btn btn-primary">
-            Kaydet
-          </button>
+        <div className="flex items-center gap-4">
+          <label className="flex items-center gap-2">
+            <input type="checkbox" name="pee" checked={form.pee} onChange={handleChange} />
+            Çiş
+          </label>
+          <label className="flex items-center gap-2">
+            <input type="checkbox" name="poop" checked={form.poop} onChange={handleChange} />
+            Kaka
+          </label>
         </div>
+        <div>
+          <label className="block mb-1">Yapılan Mama (ml)</label>
+          <input
+            type="number"
+            name="made_milk"
+            value={form.made_milk}
+            onChange={handleChange}
+            className="w-full border px-3 py-2 rounded"
+            required
+          />
+        </div>
+        <div>
+          <label className="block mb-1">İçilen Mama (ml)</label>
+          <input
+            type="number"
+            name="drank_milk"
+            value={form.drank_milk}
+            onChange={handleChange}
+            className="w-full border px-3 py-2 rounded"
+            required
+          />
+        </div>
+        <div>
+          <label className="block mb-1">Kalan Mama (ml)</label>
+          <input
+            type="number"
+            name="remaining_milk"
+            value={form.remaining_milk}
+            onChange={handleChange}
+            className="w-full border px-3 py-2 rounded"
+            required
+          />
+        </div>
+        <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+          Kaydı Ekle
+        </button>
       </form>
     </div>
   );
