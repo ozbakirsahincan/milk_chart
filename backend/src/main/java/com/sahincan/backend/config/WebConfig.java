@@ -9,7 +9,11 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/api/**")
-                .allowedOrigins("http://localhost:5173") // React'ın çalıştığı adres
+                .allowedOrigins(
+                    "http://localhost:5173",  // React web
+                    "http://localhost:19006",  // Expo web
+                    "exp://192.168.178.27:8081"  // Expo mobile
+                )
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*");
     }

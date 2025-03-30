@@ -1,7 +1,10 @@
 package com.sahincan.backend.dto;
+
+import java.time.LocalDateTime;
+
 public record FeedingLogDto(
     Long id,
-    String datetime,
+    LocalDateTime datetime,
     boolean pee,
     boolean poop,
     int madeMilk,

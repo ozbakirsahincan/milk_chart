@@ -31,6 +31,7 @@ public class FeedingLog {
 
     private String description;
     @ManyToOne
+    @JoinColumn(name = "user_id")
     @JsonBackReference
     private User user;
 }

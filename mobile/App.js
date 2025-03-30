@@ -1,14 +1,19 @@
-import { ExpoRoot } from 'expo-router';
-import { useEffect } from 'react';
-import { LogBox } from 'react-native';
+// App.js
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import HomeScreen from "./screens/HomeScreen";
+import AddScreen from "./screens/AddScreen";
 
-// Ignore specific warnings
-LogBox.ignoreLogs([
-  'Warning: Failed prop type',
-  'Sending `onAnimatedValueUpdate`',
-]);
+const Tab = createBottomTabNavigator();
 
 export default function App() {
-  const ctx = require.context('./app');
-  return <ExpoRoot context={ctx} />;
+  return (
+    <NavigationContainer>
+      <Tab.Navigator>
+        <Tab.Screen name="Ana Sayfa" component={HomeScreen} />
+        <Tab.Screen name="Ekle" component={AddScreen} />
+      </Tab.Navigator>
+    </NavigationContainer>
+  );
 }

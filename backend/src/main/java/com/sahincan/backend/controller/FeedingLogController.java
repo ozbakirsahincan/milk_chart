@@ -6,7 +6,7 @@ import com.sahincan.backend.model.FeedingLog;
 import com.sahincan.backend.model.User;
 import com.sahincan.backend.service.FeedingLogService;
 import com.sahincan.backend.service.UserService;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
